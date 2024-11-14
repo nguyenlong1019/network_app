@@ -53,6 +53,7 @@ def send_email_alert(subject, message, recipient_email):
         server.login(sender_email, password)
         server.send_message(msg)
 
+Cơ bản có mấy chức năng trên và cho phép đăng nhạp để quản lý lỗ hổng v thôi
 
 Mô Hình Hệ Thống Quản Lý Lỗ Hổng CVE
 Mục Tiêu Chính: Xây dựng một hệ thống quản lý lỗ hổng giúp công ty 
