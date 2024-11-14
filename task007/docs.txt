@@ -1,0 +1,28 @@
+Chỉ làm demo đủ câu 1
+
+1. Cài đặt và thực thi dự án dùng NS3 (7d)
+Mô tả thành phần trong mô hình mạng: Trước tiên, cần xây dựng một mô hình mạng cụ thể, 
+ví dụ như một mạng có các nút (nodes), bộ định tuyến (routers), và các kết nối (links). 
+Hãy xác định các thành phần và chức năng của từng phần tử trong mạng.
+Thực hiện cài đặt và chạy thành công dự án: Tải và cài đặt NS3 trên hệ thống. 
+Viết kịch bản (script) NS3 để mô phỏng mạng đã thiết kế. Chạy mô phỏng và kiểm tra kết quả, 
+sau đó mô tả các bước chi tiết và phân tích kết quả đầu ra. 
+
+
+
+Tài liệu:
+NS3 (Network Simulator 3) là một trình mô phỏng mạng mã nguồn mở được sử dụng rộng rãi trong nghiên cứu và giáo dục về mạng máy tính. 
+Nó được thiết kế để mô phỏng các giao thức và mô hình mạng khác nhau, 
+từ mạng không dây đến mạng có dây, và được sử dụng để phân tích hiệu suất mạng 
+và thử nghiệm các thuật toán mạng.
+
+Một số đặc điểm chính của NS3:
+Mô phỏng mạng chi tiết: NS3 hỗ trợ mô phỏng nhiều loại giao thức và cấu trúc mạng, 
+từ các giao thức tầng vật lý đến các giao thức tầng ứng dụng.
+Ngôn ngữ lập trình: NS3 được viết bằng C++, nhưng nó cũng cung cấp một giao diện bằng Python, 
+giúp có thể viết các kịch bản mô phỏng bằng ngôn ngữ quen thuộc.
+Tích hợp và mở rộng: NS3 có thể được mở rộng với các module bổ sung và hỗ trợ tích hợp với các công cụ 
+và thư viện khác như NetAnim để trực quan hóa mạng, hoặc FlowMonitor để giám sát và phân tích lưu lượng mạng.
+Ứng dụng: NS3 được sử dụng trong các nghiên cứu về giao thức mạng, thiết kế mạng, 
+và phân tích hiệu suất mạng. Nó giúp các nhà nghiên cứu và kỹ sư thử nghiệm các 
+ý tưởng mạng mà không cần triển khai thực tế, tiết kiệm thời gian và chi phí.

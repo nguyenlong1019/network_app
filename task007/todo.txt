@@ -1,0 +1,45 @@
+Sử dụng NS3 demo trên linux, ubuntu hoặc là WSL 
+
+Cài đặt các gói phụ thuộc:
+sudo apt update
+sudo apt install -y build-essential autoconf automake libxmu-dev gcc g++ python3 python3-dev python3-setuptools git mercurial cmake libc6-dev libc6-dev-i386 gdb valgrind gsl-bin libgsl-dev libsqlite3-dev libxml2-dev libgtk-3-dev libboost-all-dev
+
+Tải mã nguồn NS3 
+mkdir ns3
+cd ns3
+git clone https://gitlab.com/nsnam/ns-3-dev.git
+cd ns-3-dev
+
+Biên dịch và cài đặt NS3 
+./waf configure
+./waf build
+
+Chạy thử nghiệm NS3:
+./waf --run hello-simulator
+
+
+Sử dụng NetAdmin để trực quan hóa mạng: (CÁI PHẦN NÀY KHÔNG CẦN PHẢI LÀM)
+sudo apt install qt5-default
+cd contrib/netanim
+qmake NetAnim.pro
+make
+
+ĐỀ TÀI AODV 
+code file python 
+
+Biên dịch hỗ trợ python 
+./waf configure --enable-examples --enable-tests --enable-python
+./waf build
+
+Chạy mô phỏng:
+./waf --run "aodv_demo" 
+
+
+
+Giải thích kịch bản
+Tạo các nút và cài đặt WiFi: 10 nút được tạo và cấu hình mạng WiFi được áp dụng.
+Mô hình di chuyển: Các nút được cố định tại các vị trí khác nhau.
+Cài đặt giao thức AODV: Giao thức AODV được cài đặt cho các nút.
+Ứng dụng truyền/nhận dữ liệu: Tạo một server UDP và một client UDP để kiểm tra truyền dữ liệu qua mạng AODV.
+
+
