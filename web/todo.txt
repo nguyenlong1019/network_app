@@ -1,2 +1,91 @@
 NVD: National Vulnerability Database 
 
+Cài đặt Django và khởi tạo dự án:
+django-admin startproject CVEManagement
+
+Tạo ứng dụng mới:
+python manage.py startapp cve_alerts
+
+Model cho thông tin CVE:
+from django.db import models
+
+class CVE(models.Model):
+    cve_id = models.CharField(max_length=20)
+    description = models.TextField()
+    severity = models.CharField(max_length=10)
+    published_date = models.DateField()
+    updated_date = models.DateField()
+
+    def __str__(self):
+        return self.cve_id
+
+
+Dùng thư viện như requests để thu thập dữ liệu từ các nguồn CVE, như NVD API.
+Ví dụ đơn giản để lấy thông tin CVE:
+import requests
+
+def fetch_cve_data():
+    url = "https://services.nvd.nist.gov/rest/json/cves/1.0"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    return None
+
+Xây Dựng Chức Năng Thông Báo:
+
+Tạo các thông báo tự động qua email hoặc thông báo đẩy cho quản trị viên khi có lỗ hổng mới.
+Dùng thư viện smtplib để gửi email:
+
+import smtplib
+from email.mime.text import MIMEText
+
+def send_email_alert(subject, message, recipient_email):
+    sender_email = "your_email@example.com"
+    password = "your_password"
+
+    msg = MIMEText(message)
+    msg['Subject'] = subject
+    msg['From'] = sender_email
+    msg['To'] = recipient_email
+
+    with smtplib.SMTP("smtp.example.com", 587) as server:
+        server.starttls()
+        server.login(sender_email, password)
+        server.send_message(msg)
+
+
+Mô Hình Hệ Thống Quản Lý Lỗ Hổng CVE
+Mục Tiêu Chính: Xây dựng một hệ thống quản lý lỗ hổng giúp công ty 
+theo dõi và thông báo các lỗ hổng (CVE) có thể ảnh hưởng đến hệ thống của họ. Hệ thống này sẽ:
+Thu thập và lưu trữ thông tin về các lỗ hổng CVE.
+Phân tích và thông báo cho quản trị viên khi có lỗ hổng nghiêm trọng được công bố.
+Cho phép quản trị viên xem các báo cáo và thông tin chi tiết.
+
+Các Thành Phần Chính trong Mô Hình
+Nguồn Dữ Liệu CVE:
+
+API và Nguồn Dữ Liệu: Hệ thống sẽ dùng các API (ví dụ: NVD API) để thu thập thông tin về lỗ hổng.
+Kali Linux: Dùng để mô phỏng các cuộc tấn công và đánh giá mức độ nghiêm trọng của lỗ hổng.
+Backend (Django):
+
+Quản lý Dữ Liệu: Tạo các model Django để lưu trữ thông tin CVE, mức độ nghiêm trọng, và lịch sử các lỗ hổng.
+API & Dịch Vụ: Xây dựng các API để thu thập và hiển thị thông tin CVE. Backend cũng sẽ xử lý việc gửi thông báo khi có lỗ hổng mới.
+Hệ Thống Thông Báo:
+
+Gửi thông báo qua email hoặc tin nhắn đẩy cho quản trị viên về lỗ hổng quan trọng.
+Tùy chỉnh các mức độ thông báo dựa trên mức độ nghiêm trọng của lỗ hổng.
+Frontend (Giao Diện Web):
+
+Hiển thị thông tin lỗ hổng cho quản trị viên, cho phép họ xem các báo cáo và cập nhật tình hình an ninh.
+Giao diện thân thiện với người dùng để quản lý dữ liệu và thiết lập hệ thống.
+
+
+Quy Trình Hoạt Động Cơ Bản
+Thu Thập Dữ Liệu: Hệ thống sẽ tự động lấy dữ liệu lỗ hổng mới nhất từ các nguồn CVE.
+Phân Tích Dữ Liệu: Dữ liệu lỗ hổng sẽ được lưu vào CSDL và phân tích mức độ nguy hiểm.
+Thông Báo Quản Trị Viên: Khi có lỗ hổng quan trọng, hệ thống sẽ gửi thông báo.
+Kiểm Tra & Mô Phỏng Bảo Mật (Kali Linux): Mô phỏng các tấn công dựa trên lỗ hổng để đánh giá nguy cơ.
+Báo Cáo & Quản Lý: Quản trị viên có thể xem các báo cáo chi tiết và quản lý các lỗ hổng đã được xử lý.
+
+Dùng 1 máy demo
+
