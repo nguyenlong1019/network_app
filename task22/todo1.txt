@@ -1,0 +1,47 @@
+Quản lý thông tin các gói/ thư viện/ thành phần phụ thuộc (dependencies) trong phát triển và vận hành một website 
+
+
+- Mô tả:
+Mỗi phần mềm được phát triển đều hướng đến một môi trường đích xác định (ví dụ như chạy trên hệ điều hành nào, phiên bản bao nhiêu,
+trên hệ điều hành lại yêu cầu cài đặt các gói phần mềm và dịch vụ kèm theo, ngoài ra còn có các yêu cầu cấu hình phần cứng tương ứng). 
+Ngay trong quá trình phát triển, các lập trình viên cần sử dụng các công cụ lập trình (ví dụ IDE, editor.) 
+và các thư viện hoặc gói phần mềm kèm theo để lập trình ra sản phẩm. Một số công cụ quản lý các gói phần mềm 
+cũng được tích hợp sẵn trong các IDE như: maven, gradle, nodejs
+thì có npm... Đối với một ứng dụng trên nền Web, ngoài những thành phần trên thì khi vận hành nó còn sử dụng các thành phần khác từ các bên thứ 3 như: 
+các thư viện JavaScript, các thư viện CSS, các dữ liệu tĩnh như hình ảnh, video,..
+- Lập trình một công cụ thu thập và quản lý các thông tin phụ thuộc này cho các hệ thống web.
+* Công cụ có thể đọc các file cấu hình quản lý gói (maven, gradle, npm...) của các project phát triển website để thu thập thông
+tin, lưu trữ vào csdl, hiển thị trực quan trên giao diện của công cụ về sự phụ thuộc của các thành phần này. Công cụ hưởng đến
+thu thập (crawler) dữ liệu từ các public project trên github.
+* Công cụ có thể nhận một URL sau đó gửi request và phân tích mã HTML trả về của một hệ thống web đang hoạt động để thu
+thập thông tin về các tệp JavaScript, CSS, hình ảnh, video... theo module chức năng của hệ thống web đó.
+• Các từ khóa: library/package managment, development environment, configuration management, data crawler, web crawler
+
+Model để lưu trữ thông tin cần có những phần cơ bản sau:
+
+Sẽ có 2 bảng chính:
+project: chứa thông tin cơ bản dự án như tên (name), mô tả (desc) (có thể null, blank), file (config_file) import vào ví dụ file gradle trong android, file package.log của nodejs
+
+Bảng 2 lưu thông tin chi tiết các thư viện, package, dependencies phụ thuộc như dưới
+Tên gói/Thư viện (ví dụ requests)
+Phiên bản (version: 2.3.0)
+Cách cài đặt: đối với các package nodejs thì npm i package_name, đối với python package thì pip install package_name==version (tương tự maven) if else thôi 
+URL của tài liệu, nguồn (có hoặc không cũng được) -> nghĩ ra cách thì cho vào
+Thông tin về dependencies: ví dụ với nodejs có package.log thì lấy từ đó với python thì có requirements.txt, ...
+
+Đối với quét web tập trung sử dụng BeautifulSoup để lấy thông tin về link css, link favicon, link image, link javascript
+Chủ yếu lấy các url, phân tích qua một chút trên client để lấy thông tin các thư viện sử dụng 
+
+Phần crawl data web tham khảo file code1.py
+
+Input nhập trên web có thể là import file hoặc nhập url web để phân tích 
+
+Viết Crawler để Thu Thập Thông tin từ Các Nguồn:
+Sử dụng requests để gửi yêu cầu HTTP tới các URL công khai.
+Phân tích cú pháp (parse) mã HTML nhận được để trích xuất thông tin về các gói/thư viện (sử dụng BeautifulSoup nếu cần).
+Lưu thông tin vào cơ sở dữ liệu bằng các models đã tạo. 
+
+Phần web cần có đăng nhập (không có đăng ký, cấp tk qua trang admin)
+Trang chủ list thông tin project đã import có thể hiển thị dạng bảng và có thẻ bấm vào chi tiết để xem
+Ngoài ra có input dạng text và file (có thể import file hoặc url để phân tích và một button analysis)
+Khi phân tích xong trả về trang kết quả phân tích chi tiết
