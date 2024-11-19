@@ -1,0 +1,54 @@
+Quản lý khóa học trực tuyến dành cho sinh viên và sử dụng thuật toán để dự đoán kqht cho sv
+
+Dự đoán xác suất đạt học bổng 
+
+Có 4 bảng: 
+
+Sinh viên: tên, mã sv, khoa, lớp, thông tin liên hệ (phone, address, gender)
+Table: Students
+id (Primary Key, Auto Increment)
+rollno (Unique, String) - mã sinh viên
+name (String)
+faculty (String)
+classname (String)
+email (String)
+phone (String)
+date_of_birth (Date)
+address (String)
+
+
+Bảng môn học: 
+Subjects:
+id 
+name 
+description
+credit: số tín chỉ 
+semester: học kỳ (1->8) (int)
+
+
+Bảng điểm: Score
+id (Primary Key, Auto Increment)
+student_id (Foreign Key to Students)
+subject_id (Foreign Key to Subjects)
+tx1 (điểm tx1) (hệ số 0.1)
+tx2 (điểm tx2) (hệ số 0.1)
+middle (điểm giữa kỳ) (hệ số 0.2)
+final (điểm cuối kỳ) (hệ số 0.6)
+score (Float) -> điểm tổng kết
+training_point (điểm rèn luyện)
+created_at (DateTime)
+updated_at (DateTime) 
+
+
+Học bổng xét theo kỳ thôi (điều kiện số tín chỉ học >= 10)
+Table: ScholarshipPredictions (bảng này dùng để dự đoán tự custom nếu thấy cần sửa nhé) 
+id (Primary Key, Auto Increment)
+student_id (Foreign Key to Students)
+GPA (Float)
+training_score (Float)
+scholarship_probability (Float)
+prediction_date (DateTime)
+comments (String) 
+
+làm theo report của nó nhé t chỉ thiết kế database cho m thôi
+https://docs.google.com/document/d/1aH0NGEwMbtl2aZFeuInbuT6zd79mZwgoju-7JQQFSws/edit?tab=t.0#heading=h.ea5c1xe9wx6m
